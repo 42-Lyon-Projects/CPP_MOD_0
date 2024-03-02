@@ -1,44 +1,44 @@
 #include "ContactModel.hpp"
 #include <iostream>
 
-std::string Contact::getFirstName() const
+std::string ContactModel::getFirstName() const
 {
 	return firstName;
 }
-std::string Contact::getLastName() const
+std::string ContactModel::getLastName() const
 {
 	return lastName;
 }
-std::string Contact::getNickName() const
+std::string ContactModel::getNickName() const
 {
 	return nickName;
 }
-std::string Contact::getPhoneNumber() const
+std::string ContactModel::getPhoneNumber() const
 {
 	return phoneNumber;
 }
-std::string Contact::getDarkestSecret() const
+std::string ContactModel::getDarkestSecret() const
 {
 	return darkestSecret;
 }
 
-void Contact::setFirstName(const std::string firstName)
+void ContactModel::setFirstName(const std::string firstName)
 {
 	this->firstName = firstName;
 }
-void Contact::setLastName(const std::string lastName)
+void ContactModel::setLastName(const std::string lastName)
 {
 	this->lastName = lastName;
 }
-void Contact::setNickName(const std::string nickName)
+void ContactModel::setNickName(const std::string nickName)
 {
 	this->nickName = nickName;
 }
-void Contact::setPhoneNumber(const std::string phoneNumber)
+void ContactModel::setPhoneNumber(const std::string phoneNumber)
 {
 	this->phoneNumber = phoneNumber;
 }
-void Contact::setDarkestSecret(const std::string darkestSecret)
+void ContactModel::setDarkestSecret(const std::string darkestSecret)
 {
 	this->darkestSecret = darkestSecret;
 }

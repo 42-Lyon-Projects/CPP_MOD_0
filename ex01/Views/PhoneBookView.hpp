@@ -6,9 +6,10 @@
 	{
 		public:
 			void displayMenu() const;
-			void displayContactList(const Contact* contacts) const;
-			void displayContactDetails(const Contact contact) const;
+			void displayContactList(const size_t amount, const ContactModel* contacts) const;
+			void displayContactDetails(const ContactModel contact) const;
 			std::string getInput(const std::string& prompt) const;
+			std::string formatContactString(const std::string value) const;
 	};
 
 #endif //PHONEBOOKVIEW_H

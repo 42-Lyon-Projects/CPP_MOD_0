@@ -2,13 +2,13 @@
 	#define PHONEBOOK_HPP
 	#include "./ContactModel.hpp"
 
-	class PhoneBook
+	class PhoneBookModel
 	{
-		Contact contacts[8];
+		ContactModel contacts[8];
 		public:
 			void addContact(const std::string firstName, const std::string lastName, const std::string nickName, const std::string phoneNumber, const std::string darkestSecret);
-			Contact* getContacts();
-			size_t getContactsCount() const;
+			ContactModel* getContacts();
+			size_t getContactsCount();
 	};
 
 #endif //PHONEBOOK_HPP

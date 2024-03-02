@@ -2,7 +2,7 @@
 	#define CONTACT_HPP
 	#include <string>
 
-	class Contact
+	class ContactModel
 	{
 		private:
 			std::string firstName, lastName, nickName;

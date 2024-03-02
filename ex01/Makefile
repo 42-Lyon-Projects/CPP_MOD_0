@@ -1,54 +1,45 @@
-
-#COLOR
-_GREEN = \033[92m
-_YELLOW = \033[33m
-_RED = \033[31m
-
-#POLICE
-_END = \033[0m
-_BOLD = \033[1m
-
 NAME = PhoneBook
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = @rm -rf
 CC = @c++
 DIR = @mkdir -p
 PRINT = @echo
-FILES = Models/ContactModel		\
-		Models/PhoneBookModel	\
-		Views/PhoneBookView		\
-		Utils/StringUtils		\
-		Main					\
+FILES = Utils/StringUtils				\
+		Models/ContactModel				\
+		Models/PhoneBookModel			\
+		Controllers/PhoneBookController	\
+		Views/PhoneBookView				\
+		Main							\
 
 OBJS = $(addsuffix .o, $(addprefix .Objects/, $(FILES)))
 
 $(NAME): $(OBJS)
-	$(PRINT) "\n${_YELLOW}Making $(NAME)...${_END}"
-	$(CC) $(OBJS) $(LIBFT) -o $(NAME)
-	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
+	$(PRINT) "Making $(NAME)..."
+	$(CC) $(OBJS) -o $(NAME)
+	$(PRINT) "$(NAME) done."
 
 .Objects/%.o: ./%.cpp Makefile $(HEADER)
-	$(DIR) .Objects
-	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
+	$(DIR) .Objects/Models .Objects/Controllers .Objects/Views .Objects/Utils
+	$(PRINT) "Compiling $<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 
 all: $(NAME)
 
 clean:
-	$(PRINT) "\n${_BOLD}Cleaning Objects...${_END}"
+	$(PRINT) "Cleaning Objects..."
 	$(RM) $(OBJS)
-	$(PRINT) "${_BOLD}${_GREEN}Objects cleaned.\a${_END}"
+	$(PRINT) "Objects cleaned."
 
 fclean:
-	$(PRINT) "\n${_RED}Cleaning Objects...${_END}"
+	$(PRINT) "Cleaning Objects..."
 	$(RM) $(OBJS)
-	$(PRINT) "${_RED}Deleting Objects directory...${_END}"
+	$(PRINT) "Deleting Objects directory..."
 	$(RM) .Objects
-	$(PRINT) "${_RED}Deleting $(NAME)...${_END}"
+	$(PRINT) "Deleting $(NAME)..."
 	$(RM) $(NAME)
-	$(PRINT) "${_GREEN}Objects cleaned.${_END}"
-	$(PRINT) "${_GREEN}Objects directory deleted.${_END}"
-	$(PRINT) "${_GREEN}$(NAME) deleted.\a\n${_END}"
+	$(PRINT) "Objects cleaned."
+	$(PRINT) "Objects directory deleted."
+	$(PRINT) "$(NAME) deleted."
 
 re: fclean all
 
