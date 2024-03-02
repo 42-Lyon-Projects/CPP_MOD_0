@@ -18,4 +18,5 @@ Il écoute les actions de l'utilisateur dans la vue, interagit avec le modèle e
 Dans le cas du carnet d'adresses, le contrôleur gère les actions de l'utilisateur, telles que l'ajout d'un contact en interagissant avec le modèle et en mettant à jour la vue en conséquence.
 
 > Voici un schema pour expliquer ce principe :
+
 ![image](https://github.com/42-Lyon-Projects/CPP_MOD_0/assets/68877411/b72b7081-b070-423c-aa71-318e31921b8b)
