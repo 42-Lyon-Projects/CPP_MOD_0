@@ -1,5 +1,5 @@
 NAME = PhoneBook
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g3 -MD
 RM = @rm -rf
 CC = @c++
 DIR = @mkdir -p
@@ -9,16 +9,17 @@ FILES = Utils/StringUtils				\
 		Models/PhoneBookModel			\
 		Controllers/PhoneBookController	\
 		Views/PhoneBookView				\
-		Main							\
+		main							\
 
 OBJS = $(addsuffix .o, $(addprefix .Objects/, $(FILES)))
+DPDS = $(addsuffix .d, $(addprefix .Objects/, $(FILES)))
 
 $(NAME): $(OBJS)
 	$(PRINT) "Making $(NAME)..."
 	$(CC) $(OBJS) -o $(NAME)
 	$(PRINT) "$(NAME) done."
 
-.Objects/%.o: ./%.cpp Makefile $(HEADER)
+.Objects/%.o: ./%.cpp Makefile
 	$(DIR) .Objects/Models .Objects/Controllers .Objects/Views .Objects/Utils
 	$(PRINT) "Compiling $<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
@@ -44,3 +45,5 @@ fclean:
 re: fclean all
 
 .PHONY: all clean fclean re
+
+-include $(OBJS:.o=.d)
