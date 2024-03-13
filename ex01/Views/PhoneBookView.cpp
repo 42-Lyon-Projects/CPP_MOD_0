@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <cstdlib>
+#include <cerrno>
 #include "PhoneBookView.hpp"
 #include "../Utils/StringUtils.hpp"
 
@@ -24,6 +25,15 @@ std::string PhoneBookView::formatContactString(const std::string value) const
 		return value.substr(0, 9) + ".";
 	line.append(10 - value.size(), ' ').append(value);
 	return line;
+}
+
+static bool handleStrtolErrors()
+{
+	if (errno == ERANGE)
+		std::cout << "😦 Invalid input, possibly is out of range !" << std::endl;
+	else if (errno != 0)
+		std::cout << "😦 Invalid input." << std::endl;
+	return errno == 0;
 }
 
 void PhoneBookView::displayContactList(const size_t amount, const ContactModel *contacts) const
@@ -52,13 +62,24 @@ void PhoneBookView::displayContactList(const size_t amount, const ContactModel *
 		std::cout << "😦 Invalid input, index must contain only digits !" << std::endl;
 		strIndex = getInput(inputPrompt);
 	}
+	errno = 0;
 	int index = std::strtol(strIndex.c_str(), NULL, 10);
-
+	if (!handleStrtolErrors())
+	{
+		displayContactList(amount, contacts);
+		return;
+	}
 	while (index > static_cast<int> (amount -1) || index < 0)
 	{
 		std::cout << "Invalid index, valid range : [0-" << amount  -1 << ']' << std::endl;
 		strIndex = getInput(inputPrompt);
+		errno = 0;
 		index = std::strtol(strIndex.c_str(), NULL, 10);
+		if (!handleStrtolErrors())
+		{
+			displayContactList(amount, contacts);
+			return;
+		}
 	}
 	displayContactDetails(contacts[index]);
 }
